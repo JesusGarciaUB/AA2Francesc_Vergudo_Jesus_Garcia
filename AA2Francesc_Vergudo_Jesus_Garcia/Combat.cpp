@@ -1,4 +1,5 @@
 #include "Combat.h"
+#include "Logic.h"
 
 void Combat::Init(Player& x, Enemy& y) {
 	currentScene = START;
@@ -22,7 +23,10 @@ void Combat::ShowInterface() {
 }
 
 void Combat::StartScene() {
-	
+	ShowInterface();
+	string aux;
+	getline(cin, aux);
+	choosenOption = aux.at(0);
 }
 
 string Combat::GetBar(int max, int current) {
