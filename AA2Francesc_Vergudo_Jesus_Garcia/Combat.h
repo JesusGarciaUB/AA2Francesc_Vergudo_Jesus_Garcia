@@ -10,6 +10,7 @@ struct Combat {
 	char choosenOption;
 	Player* player;
 	Enemy* enemy;
+	int playerStaminaUsed;
 
 	//FUNCIONS
 	void Init(Player& player, Enemy& enemy);
@@ -21,4 +22,5 @@ struct Combat {
 	void FinishScene();
 	string GetBar(int max, int current);
 	string GetSta(int max, int current);
+	void playerAttacks();
 };

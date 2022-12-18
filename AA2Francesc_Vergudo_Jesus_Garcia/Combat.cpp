@@ -27,6 +27,28 @@ void Combat::StartScene() {
 	string aux;
 	getline(cin, aux);
 	choosenOption = aux.at(0);
+	currentScene = PLAYER;
+}
+
+void Combat::PlayerScene() {
+	switch (choosenOption) {
+	case 'A':
+		playerAttacks();
+		break;
+	case 'D':
+		break;
+	case 'R':
+		break;
+	case 'P':
+		break;
+	default:
+		break;
+	}
+}
+
+void Combat::playerAttacks() {
+	cout << ""; //pregunta stamina
+	cin >> playerStaminaUsed;
 }
 
 string Combat::GetBar(int max, int current) {
