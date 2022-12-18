@@ -4,6 +4,7 @@
 #include "Chest.h"
 #include "Enemy.h"
 #include "Logic.h"
+#include "Combat.h"
 
 enum GameScene { DUNGEON, COMBAT, CHEST, GAMEOVER };
 

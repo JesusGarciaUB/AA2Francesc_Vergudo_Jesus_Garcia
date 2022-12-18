@@ -58,7 +58,24 @@ void MainManager::DungeonScene() {
 }
 
 void MainManager::CombatScene() {
+	Combat combat;
+	combat.Init();
 
+	bool fighting = true;
+	while (fighting) {
+		switch (combat.currentScene) {
+		case START:
+			break;
+		case PLAYER:
+			break;
+		case ENEMY:
+			break;
+		case RESOLUTION:
+			break;
+		case FINISH:
+			break;
+		}
+	}
 }
 
 void MainManager::ChestScene() {
