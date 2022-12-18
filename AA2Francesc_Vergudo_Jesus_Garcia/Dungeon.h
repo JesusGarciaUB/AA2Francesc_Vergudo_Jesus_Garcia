@@ -1,7 +1,4 @@
 #pragma once
-#include "Player.h"
-#include "Chest.h"
-#include "Enemy.h"
 #include "Logic.h"
 
 struct Dungeon {
@@ -11,13 +8,5 @@ struct Dungeon {
 							{' ', ' ', ' ', ' ', ' '},
 							{' ', ' ', ' ', ' ', ' '} };
 
-	Player player;
-	vector<Enemy> enemies;
-	Chest chests[2];
-
-	void ShowHistory();
-	void ShowStats();
 	void ShowDungeon();
-	void ShowPlayerAction();
-
 };

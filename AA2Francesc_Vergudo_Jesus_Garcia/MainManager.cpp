@@ -2,12 +2,12 @@
 
 void MainManager::Initialize() {
 	currentScene = DUNGEON;
-	dungeon.player.Initialize();
+	player.Initialize();
 }
 
 void MainManager::Spawning() {
-	dungeon.player.pos.x = 4;
-	dungeon.player.pos.y = 2;
+	player.pos.x = 4;
+	player.pos.y = 2;
 
 	int numOfEnemies = getRandom(5, 7);
 	bool validPosition = false;
@@ -24,7 +24,23 @@ void MainManager::Spawning() {
 			}
 		}
 
-		dungeon.enemies.push_back(*enemy);
+		enemies.push_back(*enemy);
 		delete enemy;
 	}
+}
+
+void MainManager::DungeonScene() {
+
+}
+
+void MainManager::CombatScene() {
+
+}
+
+void MainManager::ChestScene() {
+	
+}
+
+void MainManager::GameOverScene() {
+
 }
