@@ -7,3 +7,4 @@
 using namespace std;
 
 int getRandom(int min, int max);
+int getRandom(int max);
