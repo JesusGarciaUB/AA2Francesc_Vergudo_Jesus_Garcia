@@ -15,7 +15,6 @@ struct Dungeon {
 	vector<Enemy> enemies;
 	Chest chests[2];
 
-	void ShowSceneName();
 	void ShowHistory();
 	void ShowStats();
 	void ShowDungeon();
