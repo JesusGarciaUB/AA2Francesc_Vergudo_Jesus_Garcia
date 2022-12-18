@@ -41,3 +41,7 @@ void Player::UsePotion() {
 	}
 	
 }
+
+void Player::Move() {
+
+}
