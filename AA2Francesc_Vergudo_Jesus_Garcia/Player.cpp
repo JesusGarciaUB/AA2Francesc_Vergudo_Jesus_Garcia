@@ -26,6 +26,12 @@ void Player::UsePotion() {
 		{
 			health = maxHealth;
 		}
+
+		potions--;
+	}
+	else
+	{
+		//cout << "You are out of POTIONS \n";
 	}
 	
 }
