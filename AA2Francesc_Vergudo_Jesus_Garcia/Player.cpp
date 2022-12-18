@@ -7,7 +7,7 @@ void Player::Initialize() {
 	agility = 3;
 
 	maxPotions = 3;
-	potions = 0;
+	potions = 3;
 
 	maxHealth = getRandom(90, 110);
 	health = maxHealth;
@@ -40,8 +40,4 @@ void Player::UsePotion() {
 		cout << "You are out of POTIONS \n";
 	}
 	
-}
-
-void Player::Move() {
-
 }

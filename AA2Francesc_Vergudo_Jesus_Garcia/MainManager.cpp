@@ -51,10 +51,76 @@ void MainManager::Spawning() {
 }
 
 void MainManager::DungeonScene() {
-	dungeon.ShowTopMenu();
-	player.ShowStats();
-	dungeon.ShowDungeon();
-	dungeon.ShowBottomMenu();
+
+	while (player.agility > 0)
+	{
+
+		dungeon.ShowTopMenu();
+		player.ShowStats();
+		dungeon.ShowDungeon();
+		dungeon.ShowBottomMenu();
+
+		cout << "Enter your action: ";
+		string action;
+		getline(cin, action);
+
+		switch (action.at(0))
+		{
+		case 'W': case 'A': case 'S': case 'D':
+			if (dungeon.IsThereAWall(player.pos.x, player.pos.y, action.at(0))) {
+				switch (action.at(0))
+				{
+					case 'W': 
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
+						player.pos.x--;
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
+						break;
+					case 'A': 
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
+						player.pos.y--;
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
+						break;
+					case 'S': 
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
+						player.pos.x++;
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
+						break;
+					case 'D':
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
+						player.pos.y++;
+						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
+						break;
+				default:
+					cout << "This shouldn't be possible";
+					break;
+				}
+				player.agility--;
+			}
+			else
+			{
+				cout << "There is a wall! ";
+			}
+			
+			break;
+		case 'P':
+			player.UsePotion();
+			break;
+		default:
+			cout << "Your action was invalid! ";
+			break;
+		}
+
+		if (dungeon.MAP_RAW[player.pos.x, player.pos.y] == "E")
+		{
+			currentScene = COMBAT;
+		}
+		else if (dungeon.MAP_RAW[player.pos.x, player.pos.y] == "C") {
+			currentScene = CHEST;
+		}
+	}
+	
+
+
 }
 
 void MainManager::CombatScene() {

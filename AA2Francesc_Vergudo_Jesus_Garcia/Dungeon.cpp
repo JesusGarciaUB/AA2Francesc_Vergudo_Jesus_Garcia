@@ -25,3 +25,24 @@ void Dungeon::ShowBottomMenu() {
 	cout << "W A S D -> Move\n";
 	cout << "P -> Potion\n\n";
 }
+
+bool Dungeon::IsThereAWall(int x, int y, char key) {
+	switch (key)
+	{
+		case 'W': 
+			if (x - 1 < 0) return true;
+			break;
+		case 'A': 
+			if (y - 1 < 0) return true;
+			break;
+		case 'S': 
+			if (x + 1 > 4) return true;
+			break;
+		case 'D':
+			if (y + 1 > 4) return true;
+			break;
+	default:
+		cout << "This shouldn't be possible";
+		break;
+	}
+}
