@@ -31,7 +31,7 @@ void Player::UsePotion() {
 	}
 	else
 	{
-		//cout << "You are out of POTIONS \n";
+		cout << "You are out of POTIONS \n";
 	}
 	
 }
