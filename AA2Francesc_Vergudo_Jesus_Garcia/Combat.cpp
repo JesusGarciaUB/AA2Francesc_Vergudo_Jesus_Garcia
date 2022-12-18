@@ -31,6 +31,7 @@ string Combat::GetBar(int max, int current) {
 	for (int x = 0; x < to_loop; x++) {
 		_return += "=";
 	}
+	return _return;
 }
 
 string Combat::GetSta(int max, int current) {
@@ -39,4 +40,5 @@ string Combat::GetSta(int max, int current) {
 	for (int x = 0; x < to_loop; x++) {
 		_return += ">";
 	}
+	return _return;
 }
