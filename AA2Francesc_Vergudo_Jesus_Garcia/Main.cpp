@@ -1,7 +1,5 @@
 #include "MainManager.h"
 
-using namespace std;
-
 void main() {
 	srand(time(NULL));
 	MainManager manager;
