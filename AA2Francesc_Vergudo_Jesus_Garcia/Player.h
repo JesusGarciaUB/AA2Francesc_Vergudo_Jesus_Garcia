@@ -20,4 +20,5 @@ struct Player {
 
 	void Initialize();
 	void UsePotion();
+	void ShowStats();
 };

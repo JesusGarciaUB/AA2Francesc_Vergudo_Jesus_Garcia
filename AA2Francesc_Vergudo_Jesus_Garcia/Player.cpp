@@ -16,6 +16,12 @@ void Player::Initialize() {
 	stamina = maxStamina;
 }
 
+void Player::ShowStats() {
+	cout << "Health: " << health << " / " << maxHealth;
+	cout << "Potions: " << potions << " / " << maxPotions;
+	cout << "Moves: " << agility << " / " << maxAgility;
+}
+
 void Player::UsePotion() {
 
 	if (potions > 0)
