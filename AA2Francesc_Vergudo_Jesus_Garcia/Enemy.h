@@ -8,5 +8,5 @@ struct Enemy {
 	int maxHealth;
 	int stamina;
 
-	void NewEnemy(Enemy& _enemy);
+	void Initialize();
 };

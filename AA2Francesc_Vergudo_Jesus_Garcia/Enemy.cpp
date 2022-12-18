@@ -1,5 +1,6 @@
 #include "Enemy.h"
+#include "Logic.h"
 
-void NewEnemy(Enemy& _enemy) {
+void Enemy::Initialize() {
 
 }
