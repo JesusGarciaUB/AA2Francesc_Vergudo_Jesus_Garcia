@@ -5,7 +5,7 @@ void main() {
 	MainManager manager;
 	manager.Initialize();
 	manager.Spawning();
-	/*
+	
 	bool playing = true;
 	
 	while (playing) {
@@ -19,5 +19,5 @@ void main() {
 		case GAMEOVER:
 			break;
 		}
-	}*/
+	}
 }
