@@ -1,7 +1,12 @@
 #include "Player.h"
 
-void NewPlayer(Player& _player) {
-	_player.gold = 0;
-	_player.agility = 3;
-	_player.potions = 0;
+void Player::Initialize() {
+	gold = 0;
+	agility = 3;
+	potions = 0;
+
+
+	health = getRandom(90, 110);
+	stamina = getRandom(90, 110);
+
 }

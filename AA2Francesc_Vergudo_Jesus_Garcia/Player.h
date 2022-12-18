@@ -1,4 +1,5 @@
 #pragma once
+#include "Logic.h"
 
 struct Player {
 	int health;
@@ -9,6 +10,6 @@ struct Player {
 	int stamina;
 	int agility;
 	int potions;
-};
 
-void NewPlayer(Player player);
+	void Initialize();
+};
