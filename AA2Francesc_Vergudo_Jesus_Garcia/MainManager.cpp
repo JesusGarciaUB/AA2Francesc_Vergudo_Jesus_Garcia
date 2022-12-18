@@ -5,5 +5,5 @@ void MainManager::Initialize() {
 }
 
 void MainManager::Spawning() {
-
+	
 }
