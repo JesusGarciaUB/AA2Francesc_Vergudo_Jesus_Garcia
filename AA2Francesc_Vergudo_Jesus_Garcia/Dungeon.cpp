@@ -45,4 +45,5 @@ bool Dungeon::IsThereAWall(int x, int y, char key) {
 		cout << "This shouldn't be possible";
 		break;
 	}
+	return false;
 }
