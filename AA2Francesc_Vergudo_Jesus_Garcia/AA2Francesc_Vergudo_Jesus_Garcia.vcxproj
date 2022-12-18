@@ -131,6 +131,7 @@
     <ClCompile Include="Logic.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainManager.cpp" />
+    <ClCompile Include="MapPosition.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>

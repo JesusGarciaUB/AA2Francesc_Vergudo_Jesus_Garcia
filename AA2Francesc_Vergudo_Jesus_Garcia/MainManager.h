@@ -13,6 +13,7 @@ struct MainManager {
 	Player player;
 	vector<Enemy> enemies;
 	Chest chests[2];
+	Dungeon dungeon;
 
 	//FUNCTIONS
 	void Initialize();

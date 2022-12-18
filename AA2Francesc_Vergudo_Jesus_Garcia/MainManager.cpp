@@ -5,5 +5,18 @@ void MainManager::Initialize() {
 }
 
 void MainManager::Spawning() {
-	player.pos.x = 
+	player.pos.x = 4;
+	player.pos.y = 2;
+
+	int numOfEnemies = getRandom(5, 7);
+
+	for (int x = 0; x < numOfEnemies; x++) {
+		Enemy* enemy = new Enemy();
+		enemy->Initialize();
+
+
+
+		enemies.push_back(*enemy);
+		delete enemy;
+	}
 }

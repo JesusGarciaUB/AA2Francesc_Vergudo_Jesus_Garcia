@@ -4,9 +4,10 @@ void main() {
 	srand(time(NULL));
 	MainManager manager;
 	manager.Initialize();
-
+	manager.Spawning();
+	/*
 	bool playing = true;
-
+	
 	while (playing) {
 		switch (manager.currentScene) {
 		case DUNGEON:
@@ -18,5 +19,5 @@ void main() {
 		case GAMEOVER:
 			break;
 		}
-	}
+	}*/
 }
