@@ -1,12 +1,13 @@
 #pragma once
+#include "MapPosition.h"
 
 struct Enemy {
-	int x;
-	int y;
+	MapPosition pos;
 	bool isDead;
 	int health;
 	int maxHealth;
 	int stamina;
+	int maxStamina;
 
 	void Initialize();
 };
