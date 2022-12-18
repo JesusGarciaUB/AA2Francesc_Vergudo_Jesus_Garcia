@@ -1,6 +1,8 @@
 #pragma once
-#include "Player.h";
-#include "Logic.h";
+#include "Player.h"
+#include "Chest.h"
+#include "Enemy.h"
+#include "Logic.h"
 
 struct Dungeon {
 	char MAP_RAW[5][5] = {	{' ', ' ', ' ', ' ', ' '},
@@ -9,7 +11,14 @@ struct Dungeon {
 							{' ', ' ', ' ', ' ', ' '},
 							{' ', ' ', ' ', ' ', ' '} };
 
+	Player player;
+	vector<Enemy> enemies;
+	Chest chests[2];
+
+	void ShowSceneName();
 	void ShowHistory();
-	void ShowStats(Player player);
+	void ShowStats();
 	void ShowDungeon();
+	void ShowPlayerAction();
+
 };
