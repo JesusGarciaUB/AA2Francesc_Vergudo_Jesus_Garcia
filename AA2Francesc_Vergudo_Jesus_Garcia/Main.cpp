@@ -2,7 +2,7 @@
 #include "MainManager.h"
 
 using namespace std;
-int cosa = 1;
+
 void main() {
 	MainManager manager;
 	manager.Initialize();
