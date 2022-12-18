@@ -10,3 +10,5 @@ struct Player {
 	int agility;
 	int potions;
 };
+
+void NewPlayer(Player player);
