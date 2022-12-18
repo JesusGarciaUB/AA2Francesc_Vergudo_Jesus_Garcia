@@ -8,4 +8,5 @@ struct MainManager {
 
 	//FUNCTIONS
 	void Initialize();
+	void Spawning();
 };
