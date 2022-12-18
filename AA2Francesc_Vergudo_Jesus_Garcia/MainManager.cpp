@@ -22,7 +22,7 @@ void MainManager::Spawning() {
 			enemy->pos.RandPosition();
 
 			if (dungeon.MAP_RAW[enemy->pos.x][enemy->pos.y] == ' ') {
-				dungeon.MAP_RAW[enemy->pos.x][enemy->pos.y] == 'E';
+				dungeon.MAP_RAW[enemy->pos.x][enemy->pos.y] = 'E';
 				validPosition = true;
 			}
 		}
@@ -32,7 +32,21 @@ void MainManager::Spawning() {
 	}
 
 	for (int x = 0; x < 2; x++) {
+		Chest* chest = new Chest();
+		chest->Init();
 
+		validPosition = false;
+		while (!validPosition) {
+			chest->pos.RandPosition();
+
+			if (dungeon.MAP_RAW[chest->pos.x][chest->pos.y] == ' ') {
+				dungeon.MAP_RAW[chest->pos.x][chest->pos.y] = 'C';
+				validPosition = true;
+			}
+		}
+
+		chests[x] = *chest;
+		delete chest;
 	}
 }
 

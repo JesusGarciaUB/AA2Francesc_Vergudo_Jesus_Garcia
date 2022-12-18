@@ -15,10 +15,13 @@ void main() {
 			system("pause");
 			break;
 		case COMBAT:
+			manager.CombatScene();
 			break;
 		case CHEST:
+			manager.ChestScene();
 			break;
 		case GAMEOVER:
+			manager.GameOverScene();
 			break;
 		}
 	}
