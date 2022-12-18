@@ -36,7 +36,10 @@ void MainManager::Spawning() {
 }
 
 void MainManager::DungeonScene() {
-
+	dungeon.ShowTopMenu();
+	player.ShowStats();
+	dungeon.ShowDungeon();
+	dungeon.ShowBottomMenu();
 }
 
 void MainManager::CombatScene() {

@@ -1,5 +1,10 @@
 #include "Dungeon.h"
 
+void Dungeon::ShowTopMenu() {
+	cout << "------DUNGEON------\n\n";
+	cout << "E -> Enemy    P -> Player    C -> Chest\n\n";
+}
+
 void Dungeon::ShowDungeon() {
 	cout << " ___   ___   ___   ___   ___ \n";
 	for (int i = 0; i < 5; i++)
@@ -13,4 +18,10 @@ void Dungeon::ShowDungeon() {
 
 		cout << "\n|___| |___| |___| |___| |___| \n";
 	}
+	cout << "___________________________\n\n";
+}
+
+void Dungeon::ShowBottomMenu() {
+	cout << "W A S D -> Move\n";
+	cout << "P -> Potion\n\n";
 }

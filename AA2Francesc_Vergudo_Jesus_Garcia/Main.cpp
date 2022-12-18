@@ -11,6 +11,8 @@ void main() {
 	while (playing) {
 		switch (manager.currentScene) {
 		case DUNGEON:
+			manager.DungeonScene();
+			system("pause");
 			break;
 		case COMBAT:
 			break;

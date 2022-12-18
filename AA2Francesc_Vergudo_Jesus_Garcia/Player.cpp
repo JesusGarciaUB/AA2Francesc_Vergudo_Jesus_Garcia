@@ -17,9 +17,9 @@ void Player::Initialize() {
 }
 
 void Player::ShowStats() {
-	cout << "Health: " << health << " / " << maxHealth;
-	cout << "Potions: " << potions << " / " << maxPotions;
-	cout << "Moves: " << agility << " / " << maxAgility;
+	cout << "Health: " << health << " / " << maxHealth << "\n";
+	cout << "Potions: " << potions << " / " << maxPotions << "\n";
+	cout << "Moves: " << agility << " / " << maxAgility << "\n\n";
 }
 
 void Player::UsePotion() {
