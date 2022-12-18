@@ -11,11 +11,12 @@ void MainManager::Spawning() {
 	dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
 
 	int numOfEnemies = getRandom(5, 7);
-	bool validPosition = false;
+	bool validPosition;
 
 	for (int x = 0; x < numOfEnemies; x++) {
 		Enemy* enemy = new Enemy();
 		enemy->Initialize();
+		validPosition = false;
 
 		while (!validPosition) {
 			enemy->pos.RandPosition();
