@@ -19,6 +19,7 @@ struct MainManager {
 	//FUNCTIONS
 	void Initialize();
 	void Spawning();
+	int getEnemy(int x, int y);
 	void DungeonScene();
 	void CombatScene();
 	void ChestScene();

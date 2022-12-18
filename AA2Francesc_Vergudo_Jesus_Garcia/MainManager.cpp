@@ -125,12 +125,13 @@ void MainManager::DungeonScene() {
 
 void MainManager::CombatScene() {
 	Combat combat;
-	combat.Init();
+	combat.Init(player, enemies[getEnemy(player.pos.x, player.pos.y)]);
 
 	bool fighting = true;
 	while (fighting) {
 		switch (combat.currentScene) {
 		case START:
+			combat.StartScene();
 			break;
 		case PLAYER:
 			break;
@@ -150,4 +151,12 @@ void MainManager::ChestScene() {
 
 void MainManager::GameOverScene() {
 
+}
+
+int MainManager::getEnemy(int x, int y) {
+	for (int i = 0; i < sizeof(enemies) / sizeof(int); x++) {
+		if (enemies[i].pos.x == x && enemies[i].pos.y == y) {
+			return i;
+		}
+	}
 }
