@@ -59,48 +59,58 @@ void Combat::ResolutionScene() {
 		if (choosenOption == 'A' && enemyAction == 'D') {
 			enemy->health -= playerStaminaUsed * 0.25;
 			enemy->stamina += enemy->maxStamina * 0.25;
+			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
 			cout << endl << "You strike but enemy defends! The enemy receives " << playerStaminaUsed * 0.25 << " damage" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'A' && enemyAction == 'R') {
 			enemy->health -= playerStaminaUsed;
 			enemy->stamina = enemy->maxStamina;
+			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
 			cout << endl << "You strike the resting enemy! The enemy receives " << playerStaminaUsed << " damage" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'D' && enemyAction == 'A') {
 			player->health -= enemyStaminaUsed * 0.25;
 			player->stamina += player->maxStamina * 0.25;
+			if (player->stamina > player->maxStamina) player->stamina = player->maxStamina;
 			cout << endl << "The enemy strikes you while defending! You receive " << enemyStaminaUsed * 0.25 << " damage" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'D' && enemyAction == 'D') {
 			enemy->stamina += enemy->maxStamina * 0.25;
 			player->stamina += player->maxStamina * 0.25;
+			if (player->stamina > player->maxStamina) player->stamina = player->maxStamina;
+			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
 			cout << endl << "You and the enemy defend!" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'D' && enemyAction == 'R') {
 			player->stamina += player->maxStamina * 0.25;
 			enemy->stamina = enemy->maxStamina;
+			if (player->stamina > player->maxStamina) player->stamina = player->maxStamina;
+			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
 			cout << endl << "You defend while the enemy rests!" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'R' && enemyAction == 'A') {
 			player->stamina = player->maxStamina;
 			player->health -= enemyStaminaUsed;
+			if (player->stamina > player->maxStamina) player->stamina = player->maxStamina;
 			cout << endl << "The enemy strikes you while resting! You receive " << enemyStaminaUsed << " damage" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'R' && enemyAction == 'D') {
 			player->stamina = player->maxStamina;
 			enemy->stamina += enemy->maxStamina * 0.25;
+			if (player->stamina > player->maxStamina) player->stamina = player->maxStamina;
 			cout << endl << "You rest while the enemy defends!" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'R' && enemyAction == 'R') {
 			player->stamina = player->maxStamina;
 			enemy->stamina = enemy->maxStamina;
+			if (player->stamina > player->maxStamina) player->stamina = player->maxStamina;
 			cout << endl << "You both rest!" << endl;
 			didTurn = true;
 		}
@@ -117,6 +127,7 @@ void Combat::ResolutionScene() {
 				cout << endl << "You heal for " << player->maxHealth * 0.4;
 			}
 			enemy->stamina += enemy->maxStamina * 0.25;
+			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
 			didTurn = true;
 		}
 		if (choosenOption == 'P' && enemyAction == 'R') {
@@ -124,6 +135,7 @@ void Combat::ResolutionScene() {
 				cout << endl << "You heal for " << player->maxHealth * 0.4;
 			}
 			enemy->stamina = enemy->maxStamina;
+			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
 			didTurn = true;
 		}
 		system("pause");
