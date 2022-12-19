@@ -24,4 +24,5 @@ struct MainManager {
 	void CombatScene();
 	void ChestScene();
 	void GameOverScene();
+	void NewRound();
 };
