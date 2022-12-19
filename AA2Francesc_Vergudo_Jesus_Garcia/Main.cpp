@@ -21,6 +21,7 @@ void main() {
 			break;
 		case GAMEOVER:
 			manager.GameOverScene();
+			playing = false;
 			break;
 		}
 	}

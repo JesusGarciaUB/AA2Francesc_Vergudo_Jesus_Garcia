@@ -17,10 +17,12 @@ void MainManager::Spawning() {
 		Enemy* enemy = new Enemy();
 		enemy->Initialize();
 		validPosition = false;
-
+		//reset mapa
+		//player chests
+		//for recorre enemies
 		while (!validPosition) {
 			enemy->pos.RandPosition();
-
+			
 			if (dungeon.MAP_RAW[enemy->pos.x][enemy->pos.y] == ' ') {
 				dungeon.MAP_RAW[enemy->pos.x][enemy->pos.y] = 'E';
 				validPosition = true;
@@ -193,7 +195,13 @@ void MainManager::ChestScene() {
 }
 
 void MainManager::GameOverScene() {
-
+	system("cls");
+	if (player.health <= 0) {
+		cout << "YOU LOST THE GAME :(";
+	}
+	else {
+		cout << "YOU WON THE GAME!!!";
+	}
 }
 
 int MainManager::getEnemy(int x, int y) {
