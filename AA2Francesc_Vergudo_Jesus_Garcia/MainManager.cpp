@@ -193,7 +193,7 @@ void MainManager::GameOverScene() {
 }
 
 int MainManager::getEnemy(int x, int y) {
-	for (int i = 0; i < sizeof(enemies) / sizeof(int); x++) {
+	for (int i = 0; i < sizeof(enemies) / sizeof(int); i++) {
 		if (enemies[i].pos.x == x && enemies[i].pos.y == y) {
 			return i;
 		}

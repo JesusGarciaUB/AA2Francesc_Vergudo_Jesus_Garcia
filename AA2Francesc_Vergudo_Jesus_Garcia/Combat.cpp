@@ -2,9 +2,9 @@
 #include "Logic.h"
 
 void Combat::Init(Player& x, Enemy& y) {
-	currentScene = START;
 	player = &x;
 	enemy = &y;
+	currentScene = START;
 }
 
 void Combat::ShowInterface() {
@@ -169,7 +169,7 @@ void Combat::playerAttacks() {
 
 string Combat::GetBar(int max, int current) {
 	string _return;
-	int to_loop = (current * 100) / max;
+	int to_loop = ((current * 100) / max)/10;
 	for (int x = 0; x < to_loop; x++) {
 		_return += "=";
 	}
@@ -178,7 +178,7 @@ string Combat::GetBar(int max, int current) {
 
 string Combat::GetSta(int max, int current) {
 	string _return;
-	int to_loop = (current * 100) / max;
+	int to_loop = ((current * 100) / max)/10;
 	for (int x = 0; x < to_loop; x++) {
 		_return += ">";
 	}
