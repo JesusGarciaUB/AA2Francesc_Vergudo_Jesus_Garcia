@@ -124,6 +124,11 @@ void MainManager::DungeonScene() {
 		else if (enemyOrChest == 'C') {
 			currentScene = CHEST;
 		}
+
+		if (player.agility == 0)
+		{
+			NewRound();
+		}
 	}
 	
 
@@ -210,4 +215,36 @@ int MainManager::getEnemy(int x, int y) {
 			return i;
 		}
 	}
+}
+
+void MainManager::NewRound() {
+
+
+	for (int i = 0; i < sizeof(enemies) / sizeof(int); i++)
+	{
+		if (dungeon.MAP_RAW[enemies.at(i).pos.x][enemies.at(i).pos.y] != 'P')
+		{
+			dungeon.MAP_RAW[enemies.at(i).pos.x][enemies.at(i).pos.y] = ' ';
+		}
+		
+		enemies.at(i).pos.x = 0;
+		enemies.at(i).pos.y = 0;
+	}
+
+	bool validPosition;
+	for (int x = 0; x < sizeof(enemies) / sizeof(int); x++) {
+		validPosition = false;
+
+		while (!validPosition) {
+			enemies.at(x).pos.RandPosition();
+
+			if (dungeon.MAP_RAW[enemies.at(x).pos.x][enemies.at(x).pos.y] == ' ') {
+				dungeon.MAP_RAW[enemies.at(x).pos.x][enemies.at(x).pos.y] = 'E';
+				validPosition = true;
+			}
+		}
+	}
+
+	player.agility = player.maxAgility;
+
 }
