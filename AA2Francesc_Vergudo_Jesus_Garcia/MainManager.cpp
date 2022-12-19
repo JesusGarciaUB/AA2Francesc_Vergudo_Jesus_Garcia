@@ -210,7 +210,7 @@ void MainManager::GameOverScene() {
 }
 
 int MainManager::getEnemy(int x, int y) {
-	for (int i = 0; i < sizeof(enemies) / sizeof(int); i++) {
+	for (int i = 0; i < enemies.size() - 1; i++) {
 		if (enemies[i].pos.x == x && enemies[i].pos.y == y) {
 			return i;
 		}
