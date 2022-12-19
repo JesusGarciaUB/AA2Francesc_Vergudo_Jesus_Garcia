@@ -11,6 +11,9 @@ struct Combat {
 	Player* player;
 	Enemy* enemy;
 	int playerStaminaUsed;
+	char enemyAction;
+	int enemyStaminaUsed;
+	bool potionsAux;
 
 	//FUNCIONS
 	void Init(Player& player, Enemy& enemy);
@@ -23,4 +26,8 @@ struct Combat {
 	string GetBar(int max, int current);
 	string GetSta(int max, int current);
 	void playerAttacks();
+	void EnemyAttacks();
+	bool validStamina(int input);
 };
+
+bool isValid(string option);

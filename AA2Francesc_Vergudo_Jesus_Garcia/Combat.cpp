@@ -8,6 +8,7 @@ void Combat::Init(Player& x, Enemy& y) {
 }
 
 void Combat::ShowInterface() {
+	system("cls");
 	cout << "- - - - - - COMBAT - - - - - -" << endl;
 	cout << endl << "- - Enemy - -" << endl;
 	cout << "[" << GetBar(enemy->maxHealth, enemy->health) << "] ? HP" << endl;
@@ -19,36 +20,151 @@ void Combat::ShowInterface() {
 	cout << endl << "Potions " << player->potions << " / 3" << endl;
 	cout << endl << "----------------------------------------------------------------------------" << endl;
 	cout << endl << "A -> Attack" << endl << "D -> Defend" << endl << "R -> Rest" << endl << "P -> Potion" << endl;
-	cout << endl << "Enter your action: ";
+}
+
+void Combat::FinishScene() {
+	if (player->health > 0) cout << endl << "You defeated the enemy!";
+	system("pause");
 }
 
 void Combat::StartScene() {
 	ShowInterface();
-	string aux;
-	getline(cin, aux);
-	choosenOption = aux.at(0);
+	bool validInput = false;
+	string input;
+
+	while (!validInput) {
+		cout << endl << "Enter your action: ";
+		getline(cin, input);
+		validInput = isValid(input);
+		if (!validInput) cout << endl << "Invalid input";
+	}
+	choosenOption = input.at(0);
 	currentScene = PLAYER;
 }
 
-void Combat::PlayerScene() {
-	switch (choosenOption) {
-	case 'A':
-		playerAttacks();
-		break;
-	case 'D':
-		break;
-	case 'R':
-		break;
-	case 'P':
-		break;
-	default:
-		break;
+void Combat::ResolutionScene() {
+	bool didTurn = false;
+	while (!didTurn) {
+		if (choosenOption == 'A' && enemyAction == 'A') {
+			if (playerStaminaUsed >= enemyStaminaUsed) {
+				enemy->health -= playerStaminaUsed;
+				cout << endl << "You strike the enemy with more force! The enemy receives  " << playerStaminaUsed << " damage" << endl;
+			}
+			else {
+				player->health -= enemyStaminaUsed;
+				cout << endl << "Enemy strikes you with more force! You receive " << enemyStaminaUsed << " damage" << endl;
+			}
+			didTurn = true;
+		}
+		if (choosenOption == 'A' && enemyAction == 'D') {
+			enemy->health -= playerStaminaUsed * 0.25;
+			enemy->stamina += enemy->maxStamina * 0.25;
+			cout << endl << "You strike but enemy defends! The enemy receives " << playerStaminaUsed * 0.25 << " damage" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'A' && enemyAction == 'R') {
+			enemy->health -= playerStaminaUsed;
+			enemy->stamina = enemy->maxStamina;
+			cout << endl << "You strike the resting enemy! The enemy receives " << playerStaminaUsed << " damage" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'D' && enemyAction == 'A') {
+			player->health -= enemyStaminaUsed * 0.25;
+			player->stamina += player->maxStamina * 0.25;
+			cout << endl << "The enemy strikes you while defending! You receive " << enemyStaminaUsed * 0.25 << " damage" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'D' && enemyAction == 'D') {
+			enemy->stamina += enemy->maxStamina * 0.25;
+			player->stamina += player->maxStamina * 0.25;
+			cout << endl << "You and the enemy defend!" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'D' && enemyAction == 'R') {
+			player->stamina += player->maxStamina * 0.25;
+			enemy->stamina = enemy->maxStamina;
+			cout << endl << "You defend while the enemy rests!" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'R' && enemyAction == 'A') {
+			player->stamina = player->maxStamina;
+			player->health -= enemyStaminaUsed;
+			cout << endl << "The enemy strikes you while resting! You receive " << enemyStaminaUsed << " damage" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'R' && enemyAction == 'D') {
+			player->stamina = player->maxStamina;
+			enemy->stamina += enemy->maxStamina * 0.25;
+			cout << endl << "You rest while the enemy defends!" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'R' && enemyAction == 'R') {
+			player->stamina = player->maxStamina;
+			enemy->stamina = enemy->maxStamina;
+			cout << endl << "You both rest!" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'P' && enemyAction == 'A') {
+			if (potionsAux) {
+				cout << endl << "You heal for " << player->maxHealth * 0.4;
+			}
+			player->health -= enemyStaminaUsed;
+			cout << endl << "The enemy strikes you! You receive " << enemyStaminaUsed << " damage" << endl;
+			didTurn = true;
+		}
+		if (choosenOption == 'P' && enemyAction == 'D') {
+			if (potionsAux) {
+				cout << endl << "You heal for " << player->maxHealth * 0.4;
+			}
+			enemy->stamina += enemy->maxStamina * 0.25;
+			didTurn = true;
+		}
+		if (choosenOption == 'P' && enemyAction == 'R') {
+			if (potionsAux) {
+				cout << endl << "You heal for " << player->maxHealth * 0.4;
+			}
+			enemy->stamina = enemy->maxStamina;
+			didTurn = true;
+		}
+		system("pause");
+		if (player->health <= 0 || enemy->health <= 0) currentScene = FINISH;
+		else currentScene = START;
 	}
 }
 
+void Combat::EnemyScene() {
+	if (enemy->health < enemy->maxHealth * 0.3 && enemy->stamina < enemy->maxStamina * 0.3) enemyAction = 'D';
+	else if (enemy->stamina < enemy->maxStamina * 0.2) enemyAction = 'R';
+	else EnemyAttacks();
+	currentScene = RESOLUTION;
+}
+
+void Combat::EnemyAttacks() {
+	enemyAction = 'A';
+	enemyStaminaUsed = getRandom(enemy->maxStamina * 0.2, enemy->stamina);
+	enemy->stamina -= enemyStaminaUsed;
+	
+}
+
+void Combat::PlayerScene() {
+	if (choosenOption == 'A') playerAttacks();
+	int currentPotion = player->potions;
+	if (choosenOption == 'P') {
+		player->UsePotion();
+		potionsAux = currentPotion == player->potions ? false : true;
+	}
+	currentScene = ENEMY;
+}
+
 void Combat::playerAttacks() {
-	cout << ""; //pregunta stamina
-	cin >> playerStaminaUsed;
+	bool isValidStamina = false;
+	while (!isValidStamina) {
+		cout << endl << "Enter your attack value (Max " << player->stamina << "): "; 
+		cin >> playerStaminaUsed;
+		isValidStamina = validStamina(playerStaminaUsed);
+		if (!isValidStamina) cout << "Invalid attack value" << endl;
+	}
+	player->stamina -= playerStaminaUsed;
 }
 
 string Combat::GetBar(int max, int current) {
@@ -67,4 +183,14 @@ string Combat::GetSta(int max, int current) {
 		_return += ">";
 	}
 	return _return;
+}
+
+bool isValid(string option) {
+	if (option == "A" || option == "D" || option == "R" || option == "P") return true;
+	return false;
+}
+
+bool Combat::validStamina(int input) {
+	if (input > player->stamina || input <= 0) return false;
+	return true;
 }

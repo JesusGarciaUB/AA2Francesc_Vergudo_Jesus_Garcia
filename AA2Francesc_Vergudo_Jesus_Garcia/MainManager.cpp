@@ -134,12 +134,17 @@ void MainManager::CombatScene() {
 			combat.StartScene();
 			break;
 		case PLAYER:
+			combat.PlayerScene();
 			break;
 		case ENEMY:
+			combat.EnemyScene();
 			break;
 		case RESOLUTION:
+			combat.ResolutionScene();
 			break;
 		case FINISH:
+			combat.FinishScene();
+			if (player.health <= 0) currentScene = GAMEOVER;
 			break;
 		}
 	}
