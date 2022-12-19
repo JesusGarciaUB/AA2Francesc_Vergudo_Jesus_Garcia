@@ -150,6 +150,8 @@ void MainManager::CombatScene() {
 		case FINISH:
 			combat.FinishScene();
 			if (player.health <= 0) currentScene = GAMEOVER;
+			else currentScene = DUNGEON;
+			fighting = false;
 			break;
 		}
 	}
