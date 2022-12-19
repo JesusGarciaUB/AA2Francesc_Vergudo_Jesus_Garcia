@@ -12,4 +12,5 @@ struct Dungeon {
 	void ShowDungeon();
 	void ShowBottomMenu();
 	bool IsThereAWall(int x, int y, char key);
+	char IsThereAnEvent(int x, int y, char key);
 };

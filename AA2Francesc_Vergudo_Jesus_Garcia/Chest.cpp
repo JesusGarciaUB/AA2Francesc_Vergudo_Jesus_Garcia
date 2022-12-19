@@ -69,3 +69,27 @@ void Chest::Init() {
 
 	containsPotion = getRandom(1, 100) > 75 ? true : false;
 }
+
+void Chest::ShowChest() {
+	string stats = " ";
+	if (gear.agility > 0) stats += "+" + to_string(gear.agility) + " agility ";
+	if (gear.agility < 0) stats += to_string(gear.agility) + " agility ";
+
+	if (gear.HP > 0) stats += "+" + to_string(gear.HP) + " HP ";
+	if (gear.HP < 0) stats += to_string(gear.HP) + " HP ";
+
+	if (gear.stamina > 0) stats += "+" + to_string(gear.stamina) + " stamina ";
+	if (gear.stamina < 0) stats += to_string(gear.stamina) + " stamina ";
+
+	cout << "------ CHEST ------\n\n";
+	cout << " > You open the chest and it contains the following: \n\n";
+	cout << "	> " << gold << " gold!\n";
+	cout << "	> The Chest contains Gear!\n";
+	cout << "		> " << gear.name << " " << stats << "\n";
+
+	/*if (containsPotion)
+	{
+		cout << "		> The Chest contains a potion!";
+		cout << "				> " << gear.name << " " << stats;
+	}*/
+}

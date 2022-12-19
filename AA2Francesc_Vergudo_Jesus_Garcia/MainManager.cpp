@@ -52,8 +52,9 @@ void MainManager::Spawning() {
 
 void MainManager::DungeonScene() {
 
-	while (player.agility > 0)
+	while (player.agility > 0 && currentScene == DUNGEON)
 	{
+		char enemyOrChest = ' ';
 
 		dungeon.ShowTopMenu();
 		player.ShowStats();
@@ -67,25 +68,29 @@ void MainManager::DungeonScene() {
 		switch (action.at(0))
 		{
 		case 'W': case 'A': case 'S': case 'D':
-			if (dungeon.IsThereAWall(player.pos.x, player.pos.y, action.at(0))) {
+			if (!dungeon.IsThereAWall(player.pos.x, player.pos.y, action.at(0))) {
 				switch (action.at(0))
 				{
 					case 'W': 
+						enemyOrChest = dungeon.IsThereAnEvent(player.pos.x, player.pos.y, action.at(0));
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
 						player.pos.x--;
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
 						break;
 					case 'A': 
+						enemyOrChest = dungeon.IsThereAnEvent(player.pos.x, player.pos.y, action.at(0));
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
 						player.pos.y--;
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
 						break;
 					case 'S': 
+						enemyOrChest = dungeon.IsThereAnEvent(player.pos.x, player.pos.y, action.at(0));
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
 						player.pos.x++;
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
 						break;
 					case 'D':
+						enemyOrChest = dungeon.IsThereAnEvent(player.pos.x, player.pos.y, action.at(0));
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = ' ';
 						player.pos.y++;
 						dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
@@ -110,11 +115,11 @@ void MainManager::DungeonScene() {
 			break;
 		}
 
-		if (dungeon.MAP_RAW[player.pos.x, player.pos.y] == "E")
+		if (enemyOrChest == 'E')
 		{
 			currentScene = COMBAT;
 		}
-		else if (dungeon.MAP_RAW[player.pos.x, player.pos.y] == "C") {
+		else if (enemyOrChest == 'C') {
 			currentScene = CHEST;
 		}
 	}
@@ -146,7 +151,34 @@ void MainManager::CombatScene() {
 }
 
 void MainManager::ChestScene() {
-	
+
+	for (int i = 0; i < 1; i++)
+	{
+		if (player.pos.x == chests[i].pos.x && player.pos.y == chests[i].pos.y) {
+
+			player.maxAgility = player.maxAgility + chests[i].gear.agility;
+			player.agility = player.agility + chests[i].gear.agility;
+
+
+			player.maxStamina = player.maxStamina + chests[i].gear.stamina;
+			player.stamina = player.stamina + chests[i].gear.stamina;
+
+
+			player.maxHealth = player.maxHealth + chests[i].gear.HP;
+			player.health = player.health + chests[i].gear.HP;
+
+			chests[i].ShowChest();
+			if (player.potions < player.maxPotions && chests[i].containsPotion)
+			{
+				player.potions++;
+				cout << "	> The Chest contains a potion!\n";
+				cout << "		> You has picked a potion\n";
+			}
+			chests[i].isLooted = true;
+		}
+	}
+
+	currentScene = DUNGEON;
 }
 
 void MainManager::GameOverScene() {

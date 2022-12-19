@@ -47,3 +47,29 @@ bool Dungeon::IsThereAWall(int x, int y, char key) {
 	}
 	return false;
 }
+
+char Dungeon::IsThereAnEvent(int x, int y, char key) {
+	switch (key)
+	{
+	case 'W':
+		if (MAP_RAW[x - 1][y] == 'E') return 'E';
+		if (MAP_RAW[x - 1][y] == 'C') return 'C';
+		break;
+	case 'A':
+		if (MAP_RAW[x][y - 1] == 'E') return 'E';
+		if (MAP_RAW[x][y - 1] == 'C') return 'C';
+		break;
+	case 'S':
+		if (MAP_RAW[x + 1][y] == 'E') return 'E';
+		if (MAP_RAW[x + 1][y] == 'C') return 'C';
+		break;
+	case 'D':
+		if (MAP_RAW[x][y + 1] == 'E') return 'E';
+		if (MAP_RAW[x][y + 1] == 'C') return 'C';
+		break;
+	default:
+		cout << "This shouldn't be possible";
+		break;
+	}
+	return ' ';
+}

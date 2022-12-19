@@ -19,6 +19,7 @@ void main() {
 			break;
 		case CHEST:
 			manager.ChestScene();
+			system("pause");
 			break;
 		case GAMEOVER:
 			manager.GameOverScene();

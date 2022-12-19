@@ -10,4 +10,5 @@ struct Chest {
 	Gear gear;
 
 	void Init();
+	void ShowChest();
 };
