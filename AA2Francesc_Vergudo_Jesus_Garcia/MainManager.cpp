@@ -62,7 +62,7 @@ void MainManager::DungeonScene() {
 		dungeon.ShowBottomMenu();
 
 		cout << "Enter your action: ";
-		string action;
+		string action = "";
 		getline(cin, action);
 
 		switch (action.at(0))
