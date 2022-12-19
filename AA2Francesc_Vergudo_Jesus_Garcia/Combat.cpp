@@ -23,7 +23,7 @@ void Combat::ShowInterface() {
 }
 
 void Combat::FinishScene() {
-	if (player->health > 0) cout << endl << "You defeated the enemy!";
+	if (player->health > 0) cout << endl << "You defeated the enemy!" << endl;
 	system("pause");
 }
 
@@ -116,7 +116,7 @@ void Combat::ResolutionScene() {
 		}
 		if (choosenOption == 'P' && enemyAction == 'A') {
 			if (potionsAux) {
-				cout << endl << "You heal for " << player->maxHealth * 0.4;
+				cout << endl << "You heal for " << player->maxHealth * 0.4 << endl;
 			}
 			player->health -= enemyStaminaUsed;
 			cout << endl << "The enemy strikes you! You receive " << enemyStaminaUsed << " damage" << endl;
@@ -124,7 +124,7 @@ void Combat::ResolutionScene() {
 		}
 		if (choosenOption == 'P' && enemyAction == 'D') {
 			if (potionsAux) {
-				cout << endl << "You heal for " << player->maxHealth * 0.4;
+				cout << endl << "You heal for " << player->maxHealth * 0.4 << endl;
 			}
 			enemy->stamina += enemy->maxStamina * 0.25;
 			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
@@ -132,7 +132,7 @@ void Combat::ResolutionScene() {
 		}
 		if (choosenOption == 'P' && enemyAction == 'R') {
 			if (potionsAux) {
-				cout << endl << "You heal for " << player->maxHealth * 0.4;
+				cout << endl << "You heal for " << player->maxHealth * 0.4 << endl;
 			}
 			enemy->stamina = enemy->maxStamina;
 			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;

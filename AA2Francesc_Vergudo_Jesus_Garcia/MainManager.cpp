@@ -149,12 +149,14 @@ void MainManager::CombatScene() {
 			break;
 		case FINISH:
 			combat.FinishScene();
-			if (player.health <= 0) currentScene = GAMEOVER;
-			else currentScene = DUNGEON;
 			fighting = false;
 			break;
 		}
 	}
+	if (player.health <= 0) currentScene = GAMEOVER;
+	else currentScene = DUNGEON;
+
+	enemies.erase(enemies.begin() + getEnemy(player.pos.x, player.pos.y));
 }
 
 void MainManager::ChestScene() {
