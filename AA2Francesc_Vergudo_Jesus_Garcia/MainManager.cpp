@@ -173,15 +173,15 @@ void MainManager::ChestScene() {
 		if (player.pos.x == chests[i].pos.x && player.pos.y == chests[i].pos.y) {
 
 			player.maxAgility = player.maxAgility + chests[i].gear.agility;
-			player.agility = player.agility + chests[i].gear.agility;
+			if (player.agility > player.maxAgility) player.agility = player.maxAgility;
 
 
 			player.maxStamina = player.maxStamina + chests[i].gear.stamina;
-			player.stamina = player.stamina + chests[i].gear.stamina;
+			if (player.stamina > player.maxStamina) player.stamina = player.maxStamina;
 
 
 			player.maxHealth = player.maxHealth + chests[i].gear.HP;
-			player.health = player.health + chests[i].gear.HP;
+			if (player.health > player.maxHealth) player.health = player.maxHealth;
 
 			player.gold = player.gold + chests[i].gold;
 
@@ -195,7 +195,7 @@ void MainManager::ChestScene() {
 			chests[i].isLooted = true;
 		}
 	}
-
+	system("pause");
 	currentScene = DUNGEON;
 }
 
@@ -220,19 +220,14 @@ int MainManager::getEnemy(int x, int y) {
 void MainManager::NewRound() {
 
 
-	for (int i = 0; i < sizeof(enemies) / sizeof(int); i++)
+	for (int i = 0; i < enemies.size() - 1; i++)
 	{
-		if (dungeon.MAP_RAW[enemies.at(i).pos.x][enemies.at(i).pos.y] != 'P')
-		{
-			dungeon.MAP_RAW[enemies.at(i).pos.x][enemies.at(i).pos.y] = ' ';
-		}
-		
-		enemies.at(i).pos.x = 0;
-		enemies.at(i).pos.y = 0;
+
+		dungeon.MAP_RAW[enemies[i].pos.x][enemies[i].pos.y] = ' ';
 	}
 
 	bool validPosition;
-	for (int x = 0; x < sizeof(enemies) / sizeof(int); x++) {
+	for (int x = 0; x < enemies.size() - 1; x++) {
 		validPosition = false;
 
 		while (!validPosition) {
