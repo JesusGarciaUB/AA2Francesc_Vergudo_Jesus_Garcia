@@ -62,11 +62,14 @@ void MainManager::DungeonScene() {
 		player.ShowStats();
 		dungeon.ShowDungeon();
 		dungeon.ShowBottomMenu();
-
-		cout << "Enter your action: ";
 		string action = "";
-		getline(cin, action);
-
+		bool validInput = false;
+		while (!validInput) {
+			cout << endl << "Enter your action: ";
+			getline(cin, action);
+			validInput = isValid(action);
+		}
+		
 		switch (action.at(0))
 		{
 		case 'W': case 'A': case 'S': case 'D':
@@ -242,4 +245,9 @@ void MainManager::NewRound() {
 
 	player.agility = player.maxAgility;
 
+}
+
+bool isValid(string input) {
+	if (input.at(0) == 'W' || input.at(0) == 'A' || input.at(0) == 'S' || input.at(0) == 'D' || input.at(0) == 'P') return true;
+	return false;
 }

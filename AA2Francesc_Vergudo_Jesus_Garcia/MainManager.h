@@ -26,3 +26,5 @@ struct MainManager {
 	void GameOverScene();
 	void NewRound();
 };
+
+bool isValid(string input);
