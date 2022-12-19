@@ -24,8 +24,10 @@ void Combat::ShowInterface() {
 }
 
 void Combat::FinishScene() {
-	if (player->health > 0) cout << endl << "You defeated the enemy!" << endl;
-	system("pause");
+	if (player->health > 0) {
+		cout << endl << "You defeated the enemy!" << endl;
+		system("pause");
+	}
 }
 
 void Combat::StartScene() {
@@ -185,8 +187,12 @@ void Combat::playerAttacks() {
 string Combat::GetBar(int max, int current) {
 	string _return;
 	int to_loop = ((current * 100) / max)/10;
+	if (player->health > 0 && to_loop < 1) to_loop = 1;
 	for (int x = 0; x < to_loop; x++) {
 		_return += "=";
+	}
+	for (int x = 0; x < 10 - to_loop; x++) {
+		_return += " ";
 	}
 	return _return;
 }
@@ -196,6 +202,9 @@ string Combat::GetSta(int max, int current) {
 	int to_loop = ((current * 100) / max)/10;
 	for (int x = 0; x < to_loop; x++) {
 		_return += ">";
+	}
+	for (int x = 0; x < 10 - to_loop; x++) {
+		_return += " ";
 	}
 	return _return;
 }
