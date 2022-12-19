@@ -1,5 +1,6 @@
 #include "Combat.h"
 #include "Logic.h"
+#include <string>
 
 void Combat::Init(Player& x, Enemy& y) {
 	player = &x;
@@ -170,9 +171,11 @@ void Combat::PlayerScene() {
 
 void Combat::playerAttacks() {
 	bool isValidStamina = false;
+	string aux = "";
 	while (!isValidStamina) {
 		cout << endl << "Enter your attack value (Max " << player->stamina << "): "; 
-		cin >> playerStaminaUsed;
+		getline(cin, aux);
+		playerStaminaUsed = stoi(aux);
 		isValidStamina = validStamina(playerStaminaUsed);
 		if (!isValidStamina) cout << "Invalid attack value" << endl;
 	}
