@@ -219,10 +219,13 @@ void MainManager::GameOverScene() {
 }
 
 int MainManager::getEnemy(int x, int y) {
-	for (int i = 0; i < enemies.size() - 1; i++) {
-		if (enemies.at(i).pos.x == x && enemies.at(i).pos.y == y) {
-			return i;
+	int cont = 0;
+
+	for (Enemy& e : enemies) {
+		if (e.pos.x == x && e.pos.y == y) {
+			return cont;
 		}
+		cont++;
 	}
 }
 
