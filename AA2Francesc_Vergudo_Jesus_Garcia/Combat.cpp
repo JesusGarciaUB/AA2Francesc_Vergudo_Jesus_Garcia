@@ -39,7 +39,6 @@ void Combat::StartScene() {
 		cout << endl << "Enter your action: ";
 		getline(cin, input);
 		validInput = isValid(input);
-		if (!validInput) cout << endl << "Invalid input";
 	}
 	choosenOption = input.at(0);
 	currentScene = PLAYER;
@@ -119,7 +118,7 @@ void Combat::ResolutionScene() {
 		}
 		if (choosenOption == 'P' && enemyAction == 'A') {
 			if (potionsAux) {
-				cout << endl << "You heal for " << player->maxHealth * 0.4 << endl;
+				cout << endl << "You heal for " << player->maxHealth * 40 / 100<< endl;
 			}
 			player->health -= enemyStaminaUsed;
 			cout << endl << "The enemy strikes you! You receive " << enemyStaminaUsed << " damage" << endl;
@@ -127,7 +126,7 @@ void Combat::ResolutionScene() {
 		}
 		if (choosenOption == 'P' && enemyAction == 'D') {
 			if (potionsAux) {
-				cout << endl << "You heal for " << player->maxHealth * 0.4 << endl;
+				cout << endl << "You heal for " << player->maxHealth * 40 / 100 << endl;
 			}
 			enemy->stamina += enemy->maxStamina * 0.25;
 			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
@@ -135,7 +134,7 @@ void Combat::ResolutionScene() {
 		}
 		if (choosenOption == 'P' && enemyAction == 'R') {
 			if (potionsAux) {
-				cout << endl << "You heal for " << player->maxHealth * 0.4 << endl;
+				cout << endl << "You heal for " << player->maxHealth * 40 / 100 << endl;
 			}
 			enemy->stamina = enemy->maxStamina;
 			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
@@ -209,8 +208,10 @@ string Combat::GetSta(int max, int current) {
 	return _return;
 }
 
-bool isValid(string option) {
-	if (option == "A" || option == "D" || option == "R" || option == "P") return true;
+bool Combat::isValid(string option) {
+	if (option == "A" && player->stamina > 0|| option == "D" || option == "R" || option == "P") return true;
+	if (option == "A" && player->stamina <= 0) cout << endl << "You don't have stamina to attack!";
+	else cout << endl << "Invalid input";
 	return false;
 }
 

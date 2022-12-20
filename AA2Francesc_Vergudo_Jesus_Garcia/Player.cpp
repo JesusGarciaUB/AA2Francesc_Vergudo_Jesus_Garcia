@@ -26,7 +26,7 @@ void Player::UsePotion() {
 
 	if (potions > 0)
 	{
-		health += maxHealth % 40;
+		health += maxHealth * 40 / 100;
 
 		if (health > maxHealth)
 		{
