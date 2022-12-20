@@ -26,6 +26,7 @@ void Combat::ShowInterface() {
 void Combat::FinishScene() {
 	if (player->health > 0) {
 		cout << "You defeated the enemy!" << endl;
+		player->gold += 100;
 		system("pause");
 	}
 }
