@@ -25,7 +25,7 @@ void Combat::ShowInterface() {
 
 void Combat::FinishScene() {
 	if (player->health > 0) {
-		cout << endl << "You defeated the enemy!" << endl;
+		cout << "You defeated the enemy!" << endl;
 		system("pause");
 	}
 }
@@ -140,7 +140,7 @@ void Combat::ResolutionScene() {
 			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
 			didTurn = true;
 		}
-		system("pause");
+		if (enemy->health > 0) system("pause");
 		if (player->health <= 0 || enemy->health <= 0) currentScene = FINISH;
 		else currentScene = START;
 	}

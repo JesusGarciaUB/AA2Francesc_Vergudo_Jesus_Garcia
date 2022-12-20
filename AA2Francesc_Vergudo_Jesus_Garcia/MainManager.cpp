@@ -165,7 +165,8 @@ void MainManager::CombatScene() {
 	if (player.health <= 0) currentScene = GAMEOVER;
 	else currentScene = DUNGEON;
 
-	enemies.erase(enemies.begin() + getEnemy(player.pos.x, player.pos.y));
+	enemies.at(getEnemy(player.pos.x, player.pos.y)).isDead = true;
+	system("cls");
 }
 
 void MainManager::ChestScene() {
@@ -242,7 +243,7 @@ void MainManager::NewRound() {
 			enemies.at(x).pos.RandPosition();
 
 			if (dungeon.MAP_RAW[enemies.at(x).pos.x][enemies.at(x).pos.y] == ' ') {
-				dungeon.MAP_RAW[enemies.at(x).pos.x][enemies.at(x).pos.y] = 'E';
+				if (!enemies.at(x).isDead) dungeon.MAP_RAW[enemies.at(x).pos.x][enemies.at(x).pos.y] = 'E';
 				validPosition = true;
 			}
 		}
