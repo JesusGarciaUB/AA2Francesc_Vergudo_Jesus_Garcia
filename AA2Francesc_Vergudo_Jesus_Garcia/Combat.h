@@ -28,6 +28,5 @@ struct Combat {
 	void playerAttacks();
 	void EnemyAttacks();
 	bool validStamina(int input);
+	bool isValid(string option);
 };
-
-bool isValid(string option);

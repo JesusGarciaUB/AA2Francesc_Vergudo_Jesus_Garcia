@@ -17,9 +17,7 @@ void MainManager::Spawning() {
 		Enemy* enemy = new Enemy();
 		enemy->Initialize();
 		validPosition = false;
-		//reset mapa
-		//player chests
-		//for recorre enemies
+		
 		while (!validPosition) {
 			enemy->pos.RandPosition();
 			
