@@ -229,14 +229,14 @@ int MainManager::getEnemy(int x, int y) {
 void MainManager::NewRound() {
 
 
-	for (int i = 0; i < enemies.size() - 1; i++)
+	for (int i = 0; i < enemies.size(); i++)
 	{
 
 		dungeon.MAP_RAW[enemies[i].pos.x][enemies[i].pos.y] = ' ';
 	}
 
 	bool validPosition;
-	for (int x = 0; x < enemies.size() - 1; x++) {
+	for (int x = 0; x < enemies.size(); x++) {
 		validPosition = false;
 
 		while (!validPosition) {
