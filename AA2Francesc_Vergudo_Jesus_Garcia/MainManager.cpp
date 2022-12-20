@@ -161,6 +161,7 @@ void MainManager::CombatScene() {
 			break;
 		}
 	}
+	if (enemies.size() < 1 && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
 	if (player.health <= 0) currentScene = GAMEOVER;
 	else currentScene = DUNGEON;
 
@@ -197,16 +198,22 @@ void MainManager::ChestScene() {
 		}
 	}
 	system("pause");
+	if (enemies.size() < 1 && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
 	currentScene = DUNGEON;
 }
 
+//PUNTUACIO
 void MainManager::GameOverScene() {
 	system("cls");
 	if (player.health <= 0) {
-		cout << "YOU LOST THE GAME :(";
+		cout << "> You LOST! Radev's laughing right now. Your final score is: " << player.gold << endl;
+		cout << endl << "Thanks for playing :)" << endl;
+		system("pause");
 	}
 	else {
-		cout << "YOU WON THE GAME!!!";
+		cout << "You WON! Radev's minions are no more. Your final score is: " << player.gold << endl;
+		cout << endl << "Thanks for playing :)" << endl;
+		system("pause");
 	}
 }
 
