@@ -52,7 +52,10 @@ void MainManager::Spawning() {
 
 void MainManager::DungeonScene() {
 
-	if (player.agility == 0)
+	if (AllEnemiesDefeated() && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
+	if (player.health <= 0) currentScene = GAMEOVER;
+
+	if (player.agility == 0 && currentScene == DUNGEON)
 	{
 		NewRound();
 	}
@@ -130,7 +133,6 @@ void MainManager::DungeonScene() {
 		else if (enemyOrChest == 'C') {
 			currentScene = CHEST;
 		}
-
 		if (AllEnemiesDefeated() && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
 		if (player.health <= 0) currentScene = GAMEOVER;
 	}
