@@ -173,33 +173,33 @@ void MainManager::CombatScene() {
 
 void MainManager::ChestScene() {
 
-	for (int i = 0; i < 2; i++)
-	{
-		if (player.pos.x == chests[i].pos.x && player.pos.y == chests[i].pos.y) {
+	for (Chest& c : chests) {
+		if (player.pos.x == c.pos.x && player.pos.y == c.pos.y) {
 
-			player.maxAgility = player.maxAgility + chests[i].gear.agility;
+			player.maxAgility = player.maxAgility + c.gear.agility;
 			if (player.agility > player.maxAgility) player.agility = player.maxAgility;
 
 
-			player.maxStamina = player.maxStamina + chests[i].gear.stamina;
+			player.maxStamina = player.maxStamina + c.gear.stamina;
 			if (player.stamina > player.maxStamina) player.stamina = player.maxStamina;
 
 
-			player.maxHealth = player.maxHealth + chests[i].gear.HP;
+			player.maxHealth = player.maxHealth + c.gear.HP;
 			if (player.health > player.maxHealth) player.health = player.maxHealth;
 
-			player.gold = player.gold + chests[i].gold + chests[i].gear.value;
+			player.gold = player.gold + c.gold + c.gear.value;
 
-			chests[i].ShowChest();
-			if (player.potions < player.maxPotions && chests[i].containsPotion)
+			c.ShowChest();
+			if (player.potions < player.maxPotions && c.containsPotion)
 			{
 				player.potions++;
 				cout << "	> The Chest contains a potion!\n";
 				cout << "		> You has picked a potion\n";
 			}
-			chests[i].isLooted = true;
+			c.isLooted = true;
 		}
 	}
+
 	system("pause");
 	if (AllEnemiesDefeated() && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
 	currentScene = DUNGEON;
@@ -233,22 +233,21 @@ int MainManager::getEnemy(int x, int y) {
 
 void MainManager::NewRound() {
 
-
-	for (int i = 0; i < enemies.size() - 1; i++)
-	{
-
-		dungeon.MAP_RAW[enemies[i].pos.x][enemies[i].pos.y] = ' ';
+	for (Enemy& e : enemies) {
+		dungeon.MAP_RAW[e.pos.x][e.pos.y] = ' ';
 	}
 
 	bool validPosition;
-	for (int x = 0; x < enemies.size() - 1; x++) {
+	for (Enemy& e : enemies) {
+		dungeon.MAP_RAW[e.pos.x][e.pos.y] = ' ';
+
 		validPosition = false;
 
 		while (!validPosition) {
-			enemies.at(x).pos.RandPosition();
+			e.pos.RandPosition();
 
-			if (dungeon.MAP_RAW[enemies.at(x).pos.x][enemies.at(x).pos.y] == ' ') {
-				if (!enemies.at(x).isDead) dungeon.MAP_RAW[enemies.at(x).pos.x][enemies.at(x).pos.y] = 'E';
+			if (dungeon.MAP_RAW[e.pos.x][e.pos.y] == ' ') {
+				if (!e.isDead) dungeon.MAP_RAW[e.pos.x][e.pos.y] = 'E';
 				validPosition = true;
 			}
 		}
