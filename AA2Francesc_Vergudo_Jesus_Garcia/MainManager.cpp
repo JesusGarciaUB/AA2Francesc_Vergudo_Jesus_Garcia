@@ -183,7 +183,7 @@ void MainManager::ChestScene() {
 			player.maxHealth = player.maxHealth + chests[i].gear.HP;
 			if (player.health > player.maxHealth) player.health = player.maxHealth;
 
-			player.gold = player.gold + chests[i].gold;
+			player.gold = player.gold + chests[i].gold + chests[i].gear.value;
 
 			chests[i].ShowChest();
 			if (player.potions < player.maxPotions && chests[i].containsPotion)
