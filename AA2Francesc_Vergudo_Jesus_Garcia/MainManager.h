@@ -25,6 +25,7 @@ struct MainManager {
 	void ChestScene();
 	void GameOverScene();
 	void NewRound();
+	bool AllEnemiesDefeated();
 };
 
 bool isValid(string input);

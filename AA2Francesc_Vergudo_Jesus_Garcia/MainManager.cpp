@@ -199,7 +199,7 @@ void MainManager::ChestScene() {
 		}
 	}
 	system("pause");
-	if (enemies.size() < 1 && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
+	if (AllEnemiesDefeated() && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
 	currentScene = DUNGEON;
 }
 
@@ -219,7 +219,7 @@ void MainManager::GameOverScene() {
 }
 
 int MainManager::getEnemy(int x, int y) {
-	for (int i = 0; i < enemies.size() - 1; i++) {
+	for (int i = 0; i < enemies.size(); i++) {
 		if (enemies[i].pos.x == x && enemies[i].pos.y == y) {
 			return i;
 		}
@@ -258,4 +258,11 @@ void MainManager::NewRound() {
 bool isValid(string input) {
 	if (input.at(0) == 'W' || input.at(0) == 'A' || input.at(0) == 'S' || input.at(0) == 'D' || input.at(0) == 'P') return true;
 	return false;
+}
+
+bool MainManager::AllEnemiesDefeated() {
+	for (Enemy& e : enemies) {
+		if (!e.isDead) return false;
+	}
+	return true;
 }
