@@ -9,5 +9,8 @@ struct Enemy {
 	int stamina;
 	int maxStamina;
 
+	/// <summary>
+	/// Inicializa un enemigo con unos parametros preestablecidos
+	/// </summary>
 	void Initialize();
 };
