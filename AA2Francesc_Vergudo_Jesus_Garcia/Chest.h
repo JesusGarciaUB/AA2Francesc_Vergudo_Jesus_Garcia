@@ -9,6 +9,14 @@ struct Chest {
 	bool containsPotion;
 	Gear gear;
 
+
+	/// <summary>
+	/// Inicializa el cofre
+	/// </summary>
 	void Init();
+
+	/// <summary>
+	/// Enseña la interfaz del cofre
+	/// </summary>
 	void ShowChest();
 };
