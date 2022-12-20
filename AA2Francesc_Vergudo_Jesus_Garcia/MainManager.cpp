@@ -243,6 +243,8 @@ void MainManager::NewRound() {
 
 	player.agility = player.maxAgility;
 
+	dungeon.MAP_RAW[player.pos.x][player.pos.y] = 'P';
+
 }
 
 bool isValid(string input) {
