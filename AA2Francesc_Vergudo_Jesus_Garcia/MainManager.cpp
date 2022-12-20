@@ -138,7 +138,7 @@ void MainManager::DungeonScene() {
 
 void MainManager::CombatScene() {
 	Combat combat;
-	combat.Init(player, enemies[getEnemy(player.pos.x, player.pos.y)]);
+	combat.Init(player, enemies.at(getEnemy(player.pos.x, player.pos.y)));
 
 	bool fighting = true;
 	while (fighting) {
@@ -161,7 +161,7 @@ void MainManager::CombatScene() {
 			break;
 		}
 	}
-	if (enemies.size() < 1 && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
+	if (AllEnemiesDefeated() && chests[0].isLooted && chests[1].isLooted) currentScene = GAMEOVER;
 	if (player.health <= 0) currentScene = GAMEOVER;
 	else currentScene = DUNGEON;
 
@@ -219,8 +219,8 @@ void MainManager::GameOverScene() {
 }
 
 int MainManager::getEnemy(int x, int y) {
-	for (int i = 0; i < enemies.size(); i++) {
-		if (enemies[i].pos.x == x && enemies[i].pos.y == y) {
+	for (int i = 0; i < enemies.size() - 1; i++) {
+		if (enemies.at(i).pos.x == x && enemies.at(i).pos.y == y) {
 			return i;
 		}
 	}
@@ -229,14 +229,14 @@ int MainManager::getEnemy(int x, int y) {
 void MainManager::NewRound() {
 
 
-	for (int i = 0; i < enemies.size(); i++)
+	for (int i = 0; i < enemies.size() - 1; i++)
 	{
 
 		dungeon.MAP_RAW[enemies[i].pos.x][enemies[i].pos.y] = ' ';
 	}
 
 	bool validPosition;
-	for (int x = 0; x < enemies.size(); x++) {
+	for (int x = 0; x < enemies.size() - 1; x++) {
 		validPosition = false;
 
 		while (!validPosition) {

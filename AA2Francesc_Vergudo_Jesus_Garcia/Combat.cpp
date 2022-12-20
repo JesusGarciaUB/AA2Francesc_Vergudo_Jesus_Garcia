@@ -62,7 +62,7 @@ void Combat::ResolutionScene() {
 			enemy->health -= playerStaminaUsed * 0.25;
 			enemy->stamina += enemy->maxStamina * 0.25;
 			if (enemy->stamina > enemy->maxStamina) enemy->stamina = enemy->maxStamina;
-			cout << endl << "You strike but enemy defends! The enemy receives " << playerStaminaUsed * 0.25 << " damage" << endl;
+			cout << endl << "You strike but enemy defends! The enemy receives " << playerStaminaUsed * 25 / 100 << " damage" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'A' && enemyAction == 'R') {
@@ -76,7 +76,7 @@ void Combat::ResolutionScene() {
 			player->health -= enemyStaminaUsed * 0.25;
 			player->stamina += player->maxStamina * 0.25;
 			if (player->stamina > player->maxStamina) player->stamina = player->maxStamina;
-			cout << endl << "The enemy strikes you while defending! You receive " << enemyStaminaUsed * 0.25 << " damage" << endl;
+			cout << endl << "The enemy strikes you while defending! You receive " << enemyStaminaUsed * 25 / 100 << " damage" << endl;
 			didTurn = true;
 		}
 		if (choosenOption == 'D' && enemyAction == 'D') {
