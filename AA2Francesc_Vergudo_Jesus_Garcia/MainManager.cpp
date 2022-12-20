@@ -239,8 +239,6 @@ void MainManager::NewRound() {
 
 	bool validPosition;
 	for (Enemy& e : enemies) {
-		dungeon.MAP_RAW[e.pos.x][e.pos.y] = ' ';
-
 		validPosition = false;
 
 		while (!validPosition) {
