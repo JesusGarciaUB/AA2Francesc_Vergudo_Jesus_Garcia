@@ -117,7 +117,7 @@ void MainManager::DungeonScene() {
 			cout << "Your action was invalid! ";
 			break;
 		}
-
+		system("cls");
 		if (enemyOrChest == 'E')
 		{
 			currentScene = COMBAT;
